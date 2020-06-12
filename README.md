@@ -101,6 +101,5 @@ npm start
 
 ## Technical Support or Questions
 
-If you have questions or need help integrating the product please "thanhnp18@fpt.com.vn" instead of opening an issue.
+If you have questions or need help integrating the product please "thanh29695@gmail.com" instead of opening an issue.
 
-# front-end-remote-server
