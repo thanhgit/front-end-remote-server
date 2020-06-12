@@ -8,18 +8,8 @@ npm start
 
 ## File Structure
 
-Within the download you'll find the following directories and files:
-
 ```
-material-dashboard-react
 .
-├── CHANGELOG.md
-├── ISSUE_TEMPLATE.md
-├── LICENSE.md
-├── README.md
-├── bower.json
-├── gulpfile.js
-├── jsconfig.json
 ├── package.json
 ├── documentation
 │   ├── assets
@@ -33,76 +23,6 @@ material-dashboard-react
 │   ├── index.html
 │   └── manifest.json
 └── src
-    |-- assets
-    |   |-- css
-    |   |   `-- material-dashboard-react.css
-    |   |-- github
-    |   |   |-- angular.png
-    |   |   |-- chrome.png
-    |   |   |-- dashboard.jpg
-    |   |   |-- edge.png
-    |   |   |-- firefox.png
-    |   |   |-- html.png
-    |   |   |-- map.jpg
-    |   |   |-- md-react.gif
-    |   |   |-- notifications.jpg
-    |   |   |-- opera.png
-    |   |   |-- opt_md_angular_thumbnail.jpg
-    |   |   |-- opt_md_thumbnail.jpg
-    |   |   |-- opt_md_vue_thumbnail.jpg
-    |   |   |-- opt_mdr_thumbnail.jpg
-    |   |   |-- react.svg
-    |   |   |-- safari.png
-    |   |   |-- tables.jpg
-    |   |   |-- userprofile.jpg
-    |   |   `-- vuejs.png
-    |   |-- img
-    |   |   |-- apple-icon.png
-    |   |   |-- cover.jpeg
-    |   |   |-- faces
-    |   |   |   `-- marc.jpg
-    |   |   |-- favicon.png
-    |   |   |-- mask.png
-    |   |   |-- new_logo.png
-    |   |   |-- reactlogo.png
-    |   |   |-- sidebar-1.jpg
-    |   |   |-- sidebar-2.jpg
-    |   |   |-- sidebar-3.jpg
-    |   |   |-- sidebar-4.jpg
-    |   |   `-- tim_80x80.png
-    |   `-- jss
-    |       |-- material-dashboard-react
-    |       |   |-- cardImagesStyles.js
-    |       |   |-- checkboxAdnRadioStyle.js
-    |       |   |-- components
-    |       |   |   |-- buttonStyle.js
-    |       |   |   |-- cardAvatarStyle.js
-    |       |   |   |-- cardBodyStyle.js
-    |       |   |   |-- cardFooterStyle.js
-    |       |   |   |-- cardHeaderStyle.js
-    |       |   |   |-- cardIconStyle.js
-    |       |   |   |-- cardStyle.js
-    |       |   |   |-- customInputStyle.js
-    |       |   |   |-- customTabsStyle.js
-    |       |   |   |-- footerStyle.js
-    |       |   |   |-- headerLinksStyle.js
-    |       |   |   |-- headerStyle.js
-    |       |   |   |-- rtlHeaderLinksStyle.js
-    |       |   |   |-- sidebarStyle.js
-    |       |   |   |-- snackbarContentStyle.js
-    |       |   |   |-- tableStyle.js
-    |       |   |   |-- tasksStyle.js
-    |       |   |   `-- typographyStyle.js
-    |       |   |-- dropdownStyle.js
-    |       |   |-- layouts
-    |       |   |   |-- adminStyle.js
-    |       |   |   `-- rtlStyle.js
-    |       |   |-- tooltipStyle.js
-    |       |   `-- views
-    |       |       |-- dashboardStyle.js
-    |       |       |-- iconsStyle.js
-    |       |       `-- rtlStyle.js
-    |       `-- material-dashboard-react.js
     |-- components
     |   |-- Card
     |   |   |-- Card.js
