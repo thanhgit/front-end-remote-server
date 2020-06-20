@@ -10,19 +10,7 @@ npm start
 
 ```
 .
-├── package.json
-├── documentation
-│   ├── assets
-│   │   ├── css
-│   │   ├── img
-│   │   │   └── faces
-│   │   └── js
-│   └── tutorial-components.html
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── manifest.json
-└── src
+── src
     |-- components
     |   |-- Card
     |   |   |-- Card.js
