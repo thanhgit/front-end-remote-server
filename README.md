@@ -6,9 +6,7 @@ This is apart of remote server project. It's reposibility is display GUI to end 
 $ npm start
 ```
 ## File Structure
-
 ```
-.
 ── src
     |-- components
     |   |-- Card
