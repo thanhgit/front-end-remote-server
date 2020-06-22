@@ -1,6 +1,8 @@
 ## Front-end remote server project
 This is apart of remote server project. It's responsibility is display GUI to end user.
 
+## Remote server project (https://github.com/thanhgit/remote-server)
+
 ## Quick start
 ```text
 $ npm start
