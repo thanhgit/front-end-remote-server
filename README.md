@@ -1,5 +1,5 @@
 ## Front-end remote server project
-This is apart of remote server project. It's reposibility is display GUI to end user.
+This is apart of remote server project. It's responsibility is display GUI to end user.
 
 ## Quick start
 ```text
