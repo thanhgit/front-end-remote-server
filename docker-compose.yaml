@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+    webssh2:
+      ports:
+        - '2222:2222'
+      image: thanhgit/webssh2:latest
+    
+    frontend:
+      image: thanhgit/front-end-remote-server:latest
+      ports:
+        - '3000:3000'
+
+    db:
+      image: mysql
+      command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+      environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} 
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER} 
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD} 
+      ports:
+      - "3306:3306"
+
+    backend:
+      ports:
+      - '7000:7000'
+      image: thanhgit/back-end-remote-server
+      links:
+      - db
+      depends_on:
+      - db

@@ -66,5 +66,5 @@
     ],
     "development": []
   },
-  "proxy": "http://localhost:7000"
+  "proxy": "http://backend:7000"
 }
