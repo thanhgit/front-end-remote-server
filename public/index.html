@@ -82,4 +82,18 @@
           To create a production bundle, use `npm run build` or `yarn build`.
         -->
   </body>
+  <script>
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--start-maximized");
+    options.addArguments("--disable-blink-features=BlockCredentialedSubresources");
+
+    Map<String, Object> prefs = new HashMap<String, Object>();
+    prefs.put("credentials_enable_service", false);
+    prefs.put("profile.password_manager_enabled", false);
+    options.setExperimentalOption("prefs", prefs);
+
+    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+    driver = new ChromeDriver(capabilities);
+  </script>
 </html>

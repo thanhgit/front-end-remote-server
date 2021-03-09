@@ -16,7 +16,7 @@ fi
 cp config.json webssh2/app/
 
 webssh2_config_change=$(git diff -- config.json | wc -l)
-if [ $webssh2_config_change -gt 0 ]
+if [ $webssh2_config_change -gt -1 ]
 then
     docker build -t thanhgit/webssh2:latest ./webssh2
 else

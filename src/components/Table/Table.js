@@ -96,7 +96,7 @@ export default function CustomTable(props) {
   })
   }
   //end region
-
+  
   //region open ssh
   const handleClickOpenWeb = (key) => {
     var userAgent = window.navigator.userAgent,
@@ -109,13 +109,13 @@ export default function CustomTable(props) {
     if (windowsPlatforms.indexOf(platform) !== -1) {
       os = 'Windows';
       window.open(
-          `http://localhost:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
+          `http://${tableData[key][3]}:${tableData[key][4]}@127.0.0.1:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
           '_blank' // <- This is what makes it open in a new window.
       );
       
     } else {
       window.open(
-        `http://localhost:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
+        `http://${tableData[key][3]}:${tableData[key][4]}@127.0.0.1:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
         '_blank' // <- This is what makes it open in a new window.
       );
     }
