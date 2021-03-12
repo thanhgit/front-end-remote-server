@@ -23,6 +23,15 @@ else
     echo "Webssh2 config not change"
 fi
 
+exist_backend_image=$(docker images -f reference=thanhgit/back-end-remote-server:latest | wc -l)
+if [ $exist_backend_image -gt 1 ]
+then
+    echo "thanhgit/back-end-remote-server image was exist"
+else
+    git clone https://github.com/thanhgit/back-end-remote-server
+    docker build -t thanhgit/back-end-remote-server:latest ./back-end-remote-server
+fi
+
 change_frontend_repo=$(git diff -- src | wc -l)
 if [ $change_frontend_repo -gt 0 ]
 then

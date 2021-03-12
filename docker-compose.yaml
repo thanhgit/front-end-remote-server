@@ -5,10 +5,10 @@ services:
         - '2222:2222'
       image: thanhgit/webssh2:latest
     
-    frontend:
-      image: thanhgit/front-end-remote-server:latest
-      ports:
-        - '3000:3000'
+    # frontend:
+    #   image: thanhgit/front-end-remote-server:latest
+    #   ports:
+    #     - '3000:3000'
 
     db:
       image: mysql

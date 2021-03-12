@@ -22,6 +22,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { ContactsOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
@@ -30,17 +31,20 @@ export default function CustomTable(props) {
   const { tableHead, tableData, tableHeaderColor, tableIds } = props;
 
   //region edit button
-  var editID = -1;
-  var editIDhover = -1
+  var [editID, setEditID] = React.useState(-1);
 
-  var editUser = ""
-  var editIp = ""
-  var editPort = ""
-  var editPassword = ""
+  var [editUser, setEditUser] = React.useState("")
+  var [editIp, setEditIp] = React.useState("")
+  var [editPort, setEditPort] = React.useState("")
+  var [editPassword, setEditPassword] = React.useState(0)
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpenDialogEdit = (key) => {
     editID = key
+    setEditUser(tableData[editID][0])
+    setEditIp(tableData[editID][1])
+    setEditPort(parseInt(tableData[editID][2]))
+    setEditPassword(tableData[editID][3])
     setOpen(true);
   };
 
@@ -56,11 +60,11 @@ export default function CustomTable(props) {
       Password: editPassword
     }
 
-    axios.post('/api/servers/'+editID, body).then(res => {
+    axios.post('/api/servers/'+tableIds[editID], body).then(res => {
       console.log(res.data)
-      window.location.reload();
+      
     })    
-
+    window.location.reload();
     handleCloseDialogEdit()
   };
 
@@ -77,6 +81,7 @@ export default function CustomTable(props) {
 
   const handleClickOpenDialogCreate = (key) => {
     setOpenCreate(true);
+    console.log(tableData)
   };
 
   const handleCloseDialogCreate = () => {
@@ -109,13 +114,13 @@ export default function CustomTable(props) {
     if (windowsPlatforms.indexOf(platform) !== -1) {
       os = 'Windows';
       window.open(
-          `http://${tableData[key][3]}:${tableData[key][4]}@127.0.0.1:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
+          `http://${tableData[key][3]}:${tableData[key][4]}@127.0.0.1:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=${tableData[key][1]}&headerBackground=red`,
           '_blank' // <- This is what makes it open in a new window.
       );
       
     } else {
       window.open(
-        `http://${tableData[key][3]}:${tableData[key][4]}@127.0.0.1:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
+        `http://${tableData[key][3]}:${tableData[key][4]}@127.0.0.1:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=${tableData[key][1]}&headerBackground=red`,
         '_blank' // <- This is what makes it open in a new window.
       );
     }
@@ -159,16 +164,16 @@ export default function CustomTable(props) {
   const onChange = (e, name) => {
 
     if (name === "editUser") {
-      editUser = e.target.value
+      setEditUser(e.target.value)
     }
     if (name === "editIp") {
-      editIp = e.target.value
+      setEditIp(e.target.value)
     }
     if (name === "editPort") {
-      editPort = e.target.value
+      setEditPort(e.target.value)
     }
     if (name === "editPassword") {
-      editPassword = e.target.value
+      setEditPassword(e.target.value)
     }
 
     if (name === "createUser") {
@@ -202,37 +207,34 @@ export default function CustomTable(props) {
           </DialogContentText>
           <TextField
             autoFocus
-            margin="dense"
             id="username"
             label="USER NAME"
             type="text"
+            value={editUser}
             onChange={(e)=> onChange(e, "editUser")}
             fullWidth
           />
-          <TextField
-            autoFocus
-            margin="dense"
+          <TextField        
             id="ip"
             label="IP"
             type="text"
+            value={editIp}
             onChange={(e)=> onChange(e, "editIp")}
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="port"
             label="PORT"
             type="number"
+            value={editPort}
             onChange={(e)=> onChange(e, "editPort")}
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="password"
             label="PASSWORD"
             type="password"
+            value={editPassword}
             onChange={(e)=> onChange(e, "editPassword")}
             fullWidth
           />
@@ -255,7 +257,6 @@ export default function CustomTable(props) {
           </DialogContentText>
           <TextField
             autoFocus
-            margin="dense"
             id="username"
             label="USER NAME"
             type="text"
@@ -263,8 +264,6 @@ export default function CustomTable(props) {
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="ip"
             label="IP"
             type="text"
@@ -272,8 +271,6 @@ export default function CustomTable(props) {
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="port"
             label="PORT"
             type="number"
@@ -281,8 +278,6 @@ export default function CustomTable(props) {
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="password"
             label="PASSWORD"
             type="password"
@@ -327,7 +322,7 @@ export default function CustomTable(props) {
                       {(keyCol == 4) ? "******" : prop}
                       {(keyCol == 5) ? <Button color="primary" className={classes.button} onClick={()=> handleClickOpenWeb(key)} >Open Web SSH</Button> : null}
                       {(keyCol == 5) ? <Button color="primary" className={classes.button} onClick={()=> handleClickOpenCRT(key)} >Open CRT</Button> : null}
-                      {(keyCol == 5) ? <Button variant="contained" color="inherit" style={{margin: "0px 30px"}} className={classes.button} onClick={()=> handleClickOpenDialogEdit(key)} onMouseEnter={() => { editIDhover = key}} >Edit</Button> : null}
+                      {(keyCol == 5) ? <Button variant="contained" color="inherit" style={{margin: "0px 30px"}} className={classes.button} onClick={()=> handleClickOpenDialogEdit(key)} onMouseEnter={() => { setEditID(key) }} >Edit</Button> : null}
                       {(keyCol == 5) ? <Button variant="contained" color="secondary" className={classes.button} onClick={()=> handleClickDelete(key)} >Delete</Button> : null}
                     </TableCell>
                   );

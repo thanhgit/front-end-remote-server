@@ -1,6 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 /webssh2
+/back-end-remote-server
 # dependencies
 /node_modules
 

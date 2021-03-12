@@ -31,17 +31,22 @@ export default function CustomTable(props) {
   const { tableHead, tableData, tableHeaderColor, tableIds } = props;
 
   //region edit button
-  var editID = -1;
-  var editIDhover = -1
+  var [editID, setEditID] = React.useState(-1);
 
-  var editUrl = ""
-  var editUsername = ""
-  var editPassword = ""
-  var editNote = ""
+  var [editUrl, setEditUrl] = React.useState("")
+  var [editUsername, setEditUsername] = React.useState("")
+  var [editPassword, setEditPassword] = React.useState("")
+  var [editNote, setEditNote] = React.useState("")
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpenDialogEdit = (key) => {
-    editID = key
+
+    setEditID(parseInt(key))
+    setEditUrl(tableData[editID][0])
+    setEditUsername(tableData[editID][1])
+    setEditPassword(tableData[editID][2])
+    setEditNote(tableData[editID][3])
+
     setOpen(true);
   };
 
@@ -57,11 +62,11 @@ export default function CustomTable(props) {
       Note: editNote
     }
 
-    axios.post('/api/websites/'+editID, body).then(res => {
+    axios.post('/api/websites/'+tableIds[editID], body).then(res => {
       console.log(res.data)
-      window.location.reload();
     })    
 
+    //window.location.reload();
     handleCloseDialogEdit()
   };
 
@@ -136,16 +141,16 @@ export default function CustomTable(props) {
   const onChange = (e, name) => {
 
     if (name === "editUrl") {
-      editUrl = e.target.value
+      setEditUrl(e.target.value)
     }
     if (name === "editUsername") {
-      editUsername = e.target.value
+      setEditUsername(e.target.value)
     }
     if (name === "editPassword") {
-      editPassword = e.target.value
+      setEditPassword(e.target.value)
     }
     if (name === "editNote") {
-      editNote = e.target.value
+      setEditNote(e.target.value)
     }
 
     if (name === "createUrl") {
@@ -179,37 +184,34 @@ export default function CustomTable(props) {
           </DialogContentText>
           <TextField
             autoFocus
-            margin="dense"
             id="url"
             label="URL"
             type="text"
+            value={editUrl}
             onChange={(e)=> onChange(e, "editUrl")}
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="username"
             label="USER NAME"
             type="text"
+            value={editUsername}
             onChange={(e)=> onChange(e, "editUsername")}
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="password"
             label="PASSWORD"
             type="password"
+            value={editPassword}
             onChange={(e)=> onChange(e, "editPassword")}
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="note"
             label="NOTE"
             type="text"
+            value={editNote}
             onChange={(e)=> onChange(e, "editNote")}
             fullWidth
           />
@@ -232,7 +234,6 @@ export default function CustomTable(props) {
           </DialogContentText>
           <TextField
             autoFocus
-            margin="dense"
             id="url"
             label="URL"
             type="text"
@@ -240,8 +241,6 @@ export default function CustomTable(props) {
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="username"
             label="USER NAME"
             type="text"
@@ -249,8 +248,6 @@ export default function CustomTable(props) {
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="password"
             label="PASSWORD"
             type="password"
@@ -258,8 +255,6 @@ export default function CustomTable(props) {
             fullWidth
           />
           <TextField
-            autoFocus
-            margin="dense"
             id="note"
             label="NOTE"
             type="text"
@@ -306,7 +301,7 @@ export default function CustomTable(props) {
                       {(keyCol == 2) ? "********" : null}
                       {(keyCol == 3) ? prop : null}
                       {(keyCol == 4) ? <Button color="primary" className={classes.button} onClick={()=> handleClickOpenWeb(key)} >Open Web</Button> : null}
-                      {(keyCol == 4) ? <Button variant="contained" color="inherit" style={{margin: "0px 30px"}} className={classes.button} onClick={()=> handleClickOpenDialogEdit(key)} onMouseEnter={() => { editIDhover = key}} >Edit</Button> : null}
+                      {(keyCol == 4) ? <Button variant="contained" color="inherit" style={{margin: "0px 30px"}} className={classes.button} onClick={()=> handleClickOpenDialogEdit(key)} onMouseEnter={() => { setEditID(key) }} >Edit</Button> : null}
                       {(keyCol == 4) ? <Button variant="contained" color="secondary" className={classes.button} onClick={()=> handleClickDelete(key)} >Delete</Button> : null}
                     </TableCell>
                   );
