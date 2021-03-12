@@ -66,7 +66,7 @@ export default function CustomTable(props) {
       console.log(res.data)
     })    
 
-    //window.location.reload();
+    window.location.reload();
     handleCloseDialogEdit()
   };
 
