@@ -128,29 +128,6 @@ export default function CustomTable(props) {
     //window.location.href = `http://localhost:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`
   };
 
-  const handleClickOpenCRT = (key) => {
-    var userAgent = window.navigator.userAgent,
-      platform = window.navigator.platform,
-      macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-      windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-      iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-      os = null;
-
-    if (windowsPlatforms.indexOf(platform) !== -1) {
-      os = 'Windows';
-
-      window.open(
-          `SecureCRT:/:${tableData[key][3]}:${tableData[key][4]}:${tableData[key][1]}:${tableData[key][2]}:`,
-          '_blank' // <- This is what makes it open in a new window.
-      );
-    } else {
-      window.open(
-        `http://localhost:2222/ssh/host/${tableData[key][1]}?port=${tableData[key][2]}&header=My%20Header&headerBackground=red`,
-        '_blank' // <- This is what makes it open in a new window.
-      );
-    }
-  }
-
   //end region ssh
 
   const handleClickDelete = (key) => {
@@ -321,7 +298,6 @@ export default function CustomTable(props) {
                     <TableCell className={classes.tableCell} key={keyCol}>
                       {(keyCol == 4) ? "******" : prop}
                       {(keyCol == 5) ? <Button color="primary" className={classes.button} onClick={()=> handleClickOpenWeb(key)} >Open Web SSH</Button> : null}
-                      {(keyCol == 5) ? <Button color="primary" className={classes.button} onClick={()=> handleClickOpenCRT(key)} >Open CRT</Button> : null}
                       {(keyCol == 5) ? <Button variant="contained" color="inherit" style={{margin: "0px 30px"}} className={classes.button} onClick={()=> handleClickOpenDialogEdit(key)} onMouseEnter={() => { setEditID(key) }} >Edit</Button> : null}
                       {(keyCol == 5) ? <Button variant="contained" color="secondary" className={classes.button} onClick={()=> handleClickDelete(key)} >Delete</Button> : null}
                     </TableCell>
