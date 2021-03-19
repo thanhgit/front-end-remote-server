@@ -47,9 +47,14 @@ $ npm start
         `-- UserProfile
 ```
 ## Demo
-![dashboard](documentation/dashboard.png)
-![server](documentation/servers.png)
-![access quickly](documentation/accessquickly.png)
+- ### Dashboard
+    ![dashboard](documentation/dashboard.png)
+- ### Server management
+    ![server](documentation/servers.png)
+- ### Website management
+    ![access quickly](documentation/accessquickly.png)
+- ### SSH web
+    ![SSH2 web GUI](documentation/ssh2_gui.png)
 
 ## Technical Support or Questions
 
