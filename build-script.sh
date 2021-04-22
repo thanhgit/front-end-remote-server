@@ -32,13 +32,8 @@ else
     docker build -t thanhgit/back-end-remote-server:latest ./back-end-remote-server
 fi
 
-change_frontend_repo=$(git diff -- src | wc -l)
-if [ $change_frontend_repo -gt 0 ]
-then
-    sed -i -e "s/localhost/backend/g" package.json
-    docker build -t thanhgit/front-end-remote-server:latest .
-else
-    echo "Front-end-remote-server repo not change"
-fi
 
-docker-compose up
+sed -i -e "s/localhost/backend/g" package.json
+docker build -t thanhgit/front-end-remote-server:latest .
+
+docker-compose up -d
